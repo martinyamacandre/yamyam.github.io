@@ -514,7 +514,7 @@
 
             <section id="ceviri">
                 <div class="card">
-                    <h2>Hızlı Çevirmen (API Destekli)</h2>
+                    <h2>Hızlı Çevirmen (Sözlük & API Destekli)</h2>
                     <div class="interactive-box">
                         <input type="text" id="wordInput" placeholder="Bir kelime veya cümle yaz...">
                         <div>
@@ -600,25 +600,76 @@
     </footer>
 
     <script>
-        // --- ÇEVİRMEN BÖLÜMÜ ---
+        // --- ÇEVİRMEN BÖLÜMÜ (100 Kelimelik Yerel Sözlük Destekli) ---
         const wordInput = document.getElementById('wordInput');
         const trToEnBtn = document.getElementById('trToEnBtn');
         const enToTrBtn = document.getElementById('enToTrBtn');
         const translationResult = document.getElementById('translationResult');
 
+        // Yamaç'ın 100 Kelimelik Özel Yazılım ve Oyun Sözlüğü
+        const localDictionary = {
+            "bilgisayar": "computer", "yazılım": "software", "donanım": "hardware", "kod": "code",
+            "döngü": "loop", "değişken": "variable", "fonksiyon": "function", "sunucu": "server",
+            "istemci": "client", "ağ": "network", "veri": "data", "veritabanı": "database",
+            "hata": "bug", "hata ayıklama": "debugging", "algoritma": "algorithm", "dizi": "array",
+            "sınıf": "class", "nesne": "object", "dosya": "file", "klasör": "folder",
+            "ekran": "screen", "klavye": "keyboard", "fare": "mouse", "internet": "internet",
+            "tarayıcı": "browser", "sayfa": "page", "bağlantı": "link", "kullanıcı": "user",
+            "şifre": "password", "güvenlik": "security", "oyun": "game", "oyuncu": "player",
+            "seviye": "level", "puan": "score", "düşman": "enemy", "karakter": "character",
+            "can": "health", "silah": "weapon", "zırh": "armor", "hız": "speed",
+            "zaman": "time", "başlat": "start", "durdur": "stop", "duraklat": "pause",
+            "çıkış": "exit", "giriş": "login", "kayıt": "register", "ayar": "setting",
+            "ses": "sound", "müzik": "music", "görüntü": "image", "video": "video",
+            "piksel": "pixel", "çözünürlük": "resolution", "yapay zeka": "artificial intelligence",
+            "makine öğrenimi": "machine learning", "robot": "robot", "siber": "cyber",
+            "korsan": "hacker", "virüs": "virus", "koruma": "protection", "duvar": "wall",
+            "ateş duvarı": "firewall", "bulut": "cloud", "depolama": "storage", "hafıza": "memory",
+            "işlemci": "processor", "anakart": "motherboard", "ekran kartı": "graphics card",
+            "indirme": "download", "yükleme": "upload", "sunum": "presentation", "proje": "project",
+            "görev": "task", "hedef": "goal", "başarı": "achievement", "kupa": "trophy",
+            "harita": "map", "dünya": "world", "uzay": "space", "gemi": "ship",
+            "araba": "car", "yarış": "race", "dövüş": "fight", "atlama": "jump",
+            "koşma": "run", "yürüme": "walk", "uçma": "fly", "yüzme": "swim",
+            "renk": "color", "kırmızı": "red", "mavi": "blue", "yeşil": "green",
+            "siyah": "black", "beyaz": "white", "sarı": "yellow", "mor": "purple",
+            "geliştirici": "developer", "tasarım": "design", "arayüz": "interface"
+        };
+
+        const reverseDictionary = Object.fromEntries(
+            Object.entries(localDictionary).map(([tr, en]) => [en, tr])
+        );
+
         async function translateWord(text, langPair) {
-            if (text === '') {
+            const word = text.trim().toLowerCase();
+            
+            if (word === '') {
                 translationResult.textContent = 'Lütfen bir kelime veya cümle yazın.';
                 return;
             }
+
             translationResult.textContent = 'Çevriliyor...';
+
+            let localMatch = null;
+            if (langPair === 'tr|en' && localDictionary[word]) {
+                localMatch = localDictionary[word];
+            } else if (langPair === 'en|tr' && reverseDictionary[word]) {
+                localMatch = reverseDictionary[word];
+            }
+
+            if (localMatch) {
+                translationResult.textContent = `Çeviri (Hızlı Sözlük): ${localMatch}`;
+                wordInput.value = '';
+                return;
+            }
+
             try {
                 const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${langPair}`);
                 if (!response.ok) throw new Error('Çeviri servisi yanıt vermiyor.');
                 
                 const data = await response.json();
                 if (data.responseStatus === 200) {
-                    translationResult.textContent = `Çeviri: ${data.responseData.translatedText}`;
+                    translationResult.textContent = `Çeviri (İnternet): ${data.responseData.translatedText}`;
                 } else {
                     translationResult.textContent = `Çeviri başarısız oldu: ${data.responseDetails}`;
                 }
