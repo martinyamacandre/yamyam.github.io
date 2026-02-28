@@ -3,31 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yamaç'ın Dünyası</title>
+    <title>Yamaç'ın Dijital Dünyası</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
         :root {
-            /* Profesyonel Siber/Koyu Tema Renkleri */
             --primary-color: #00ff9d;
             --secondary-color: #00b8ff;
             --background-start: #0f2027;
             --background-mid: #203a43;
             --background-end: #2c5364;
             --text-color: #e0e0e0;
-            --dark-glass: rgba(15, 32, 39, 0.75);
+            --dark-glass: rgba(15, 32, 39, 0.85);
             --font-computer: 'VT323', monospace;
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
-        
-        html { 
-            scroll-behavior: smooth; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--font-computer);
@@ -37,7 +29,6 @@
             animation: gradientAnimation 15s ease infinite;
             line-height: 1.6;
             font-size: 20px;
-            letter-spacing: 1px;
         }
 
         @keyframes gradientAnimation {
@@ -46,568 +37,131 @@
             100% { background-position: 0% 50%; }
         }
 
-        .container { 
-            max-width: 1000px; 
-            margin: auto; 
-            padding: 20px; 
-            overflow: hidden; 
-        }
+        .container { max-width: 1000px; margin: auto; padding: 20px; }
         
-        section { 
-            padding: 60px 0; 
-            border-bottom: 2px dashed var(--primary-color); 
-        }
+        section { padding: 60px 0; border-bottom: 2px dashed var(--primary-color); }
         
-        section:last-of-type { 
-            border-bottom: none; 
-        }
-        
-        h1, h2, h3, h4 {
-            color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            animation: textFlicker 4s infinite alternate;
-        }
-
-        @keyframes textFlicker {
-            0% { text-shadow: 2px 2px 4px var(--secondary-color), -2px -2px 4px var(--primary-color); }
-            100% { text-shadow: 2px 2px 4px var(--primary-color), -2px -2px 4px var(--secondary-color); }
-        }
-
         .main-header {
             background: var(--dark-glass);
             backdrop-filter: blur(10px);
             padding: 15px 30px;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid var(--primary-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
-        .logo { 
-            font-size: 32px; 
-            color: var(--primary-color); 
-            text-decoration: none; 
-            font-weight: bold; 
-        }
+        .logo { font-size: 32px; color: var(--primary-color); text-decoration: none; font-weight: bold; }
         
-        .main-nav ul { 
-            list-style: none; 
-            display: flex; 
-        }
-        
-        .main-nav ul li { 
-            margin-left: 20px; 
-        }
-        
-        .main-nav a { 
-            color: var(--text-color); 
-            text-decoration: none; 
-            font-size: 22px; 
-            transition: color 0.3s ease, text-shadow 0.3s ease; 
-        }
-        
-        .main-nav a:hover { 
-            color: var(--primary-color); 
-            text-shadow: 0 0 10px var(--primary-color); 
-        }
+        .main-nav ul { list-style: none; display: flex; gap: 20px; }
+        .main-nav a { color: var(--text-color); text-decoration: none; font-size: 22px; transition: 0.3s; }
+        .main-nav a:hover { color: var(--primary-color); text-shadow: 0 0 10px var(--primary-color); }
 
-        .hero {
-            height: 80vh;
-            background: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center/cover;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center;
-            text-align: center; 
-            padding: 0 20px; 
-            position: relative;
-        }
-        
-        .hero::after { 
-            content: ''; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(15, 32, 39, 0.8); 
-        }
-        
-        .hero-content { 
-            z-index: 1; 
-        }
-        
-        .hero h1 { 
-            font-size: 64px; 
-            margin-bottom: 10px; 
-            color: var(--primary-color);
-        }
-        
-        .hero p { 
-            font-size: 26px; 
-            color: #ccc;
-        }
-        
         .card {
             background: var(--dark-glass);
-            backdrop-filter: blur(10px);
             border: 1px solid var(--secondary-color);
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             text-align: center;
-        }
-        
-        .card h2 { 
-            font-size: 40px; 
-            color: var(--primary-color); 
-            margin-bottom: 20px; 
-        }
-        
-        .projects-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px; 
-            margin-top: 20px; 
-        }
-        
-        .project-card { 
-            background: rgba(0, 0, 0, 0.6); 
-            border: 1px solid var(--primary-color); 
-            border-radius: 10px; 
-            padding: 20px; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
-        }
-        
-        .project-card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 0 15px var(--primary-color); 
-        }
-        
-        .project-card h3 { 
-            color: var(--secondary-color); 
-            margin-bottom: 10px; 
-            font-size: 28px;
-        }
-        
-        .interactive-box { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 15px; 
-        }
-        
-        .interactive-box input[type="text"] {
-            padding: 12px; 
-            width: 100%; 
-            max-width: 500px; 
-            border: 2px solid var(--primary-color);
-            background: rgba(0,0,0,0.7); 
-            color: #fff; 
-            font-family: var(--font-computer);
-            font-size: 20px; 
-            border-radius: 5px;
-            outline: none;
+            box-shadow: 0 0 20px rgba(0,255,157,0.2);
         }
 
-        .interactive-box input[type="text"]:focus {
-            box-shadow: 0 0 10px var(--primary-color);
-        }
+        h2 { color: var(--primary-color); font-size: 40px; margin-bottom: 20px; }
 
         .btn {
-            padding: 12px 25px; 
-            background: var(--primary-color); 
-            color: #0f2027; 
-            border: none; 
-            cursor: pointer;
-            font-family: var(--font-computer); 
-            font-size: 20px; 
-            font-weight: bold;
-            border-radius: 5px; 
-            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-            margin: 5px;
+            padding: 12px 25px; background: var(--primary-color); color: #000;
+            border: none; cursor: pointer; font-family: var(--font-computer);
+            font-size: 22px; font-weight: bold; border-radius: 5px; transition: 0.3s;
+            margin: 10px;
         }
-        
-        .btn:hover { 
-            transform: scale(1.05); 
-            background: var(--secondary-color); 
-            box-shadow: 0 0 15px var(--secondary-color);
-        }
-        
-        .btn:disabled { 
-            background: #555;
-            color: #888;
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
+        .btn:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--primary-color); }
+
+        input {
+            padding: 12px; width: 80%; border: 2px solid var(--primary-color);
+            background: #000; color: #fff; font-family: var(--font-computer); font-size: 22px;
+            border-radius: 5px; margin-bottom: 10px;
         }
 
-        .result-text { 
-            margin-top: 15px; 
-            font-size: 24px; 
-            color: var(--primary-color); 
-            min-height: 30px; 
+        .result-box {
+            margin-top: 20px; padding: 20px; border: 1px solid var(--secondary-color);
+            min-height: 60px; font-size: 24px; color: #fff; background: rgba(0,0,0,0.3);
         }
 
-        .media-container { 
-            position: relative; 
-            width: 100%; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            margin: 20px 0; 
-        }
-        
-        .media-container iframe { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            border: 2px solid var(--secondary-color); 
-            border-radius: 10px; 
-        }
-        
-        .video-wrapper, .game-wrapper { margin-bottom: 40px; }
-        .video-wrapper:last-child, .game-wrapper:last-child { margin-bottom: 0; }
-        
-        .video-wrapper h4, .game-wrapper h4 { 
-            font-size: 28px; 
-            color: var(--primary-color); 
-            margin-bottom: 15px; 
-        }
+        .media-container { position: relative; padding-bottom: 56.25%; height: 0; margin-top: 20px; }
+        .media-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px; }
 
-        .contact-form { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-            max-width: 600px; 
-            margin: 0 auto; 
-        }
-        
-        .contact-form input, .contact-form textarea {
-            padding: 15px; 
-            border: 2px solid var(--secondary-color); 
-            background: rgba(0,0,0,0.6); 
-            color: #fff;
-            font-family: var(--font-computer); 
-            font-size: 18px; 
-            border-radius: 5px;
-            outline: none;
-        }
+        #playlist { list-style: none; text-align: left; margin-top: 15px; max-height: 200px; overflow-y: auto; }
+        #playlist li { padding: 10px; cursor: pointer; border-bottom: 1px solid #444; }
+        #playlist li:hover { background: rgba(0,255,157,0.2); }
+        .active-song { color: var(--primary-color); font-weight: bold; }
 
-        .contact-form input:focus, .contact-form textarea:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 10px var(--primary-color);
-        }
-        
-        .contact-form textarea { 
-            resize: vertical; 
-            min-height: 150px; 
-        }
-        
-        /* Müzik Çalar CSS Kodları */
-        #music-player {
-            width: 100%;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            border: 2px solid var(--primary-color);
-            background: rgba(0,0,0,0.5);
-            outline: none;
-        }
-        
-        #playlist {
-            list-style: none;
-            margin-top: 20px;
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid var(--secondary-color);
-            border-radius: 10px;
-            padding: 10px;
-            text-align: left;
-            background: rgba(0,0,0,0.4);
-        }
-
-        #playlist li {
-            padding: 12px 15px;
-            cursor: pointer;
-            border-bottom: 1px dashed var(--primary-color);
-            transition: background-color 0.3s, padding-left 0.3s;
-            font-size: 22px;
-        }
-        
-        #playlist li:last-child { border-bottom: none; }
-        
-        #playlist li:hover {
-            background: var(--dark-glass);
-            padding-left: 25px;
-            color: var(--primary-color);
-        }
-        
-        #playlist li.active-song {
-            background: var(--primary-color);
-            color: #000;
-            font-weight: bold;
-            text-shadow: none;
-            border-radius: 5px;
-        }
-
-        /* ===== S.S.S. (FAQ) BÖLÜMÜ STİLLERİ ===== */
-        .faq-container {
-            margin-top: 25px;
-            text-align: left; 
-        }
-        
-        .faq-item {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--secondary-color);
-            border-radius: 8px;
-            margin-bottom: 10px;
-            overflow: hidden; 
-        }
-        
-        .faq-item summary {
-            padding: 15px 20px;
-            cursor: pointer;
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-            position: relative; 
-            list-style: none; 
-            transition: background-color 0.3s ease;
-        }
-        
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-        
-        .faq-item summary:hover {
-            background: rgba(255,255,255,0.1);
-        }
-        
-        .faq-item summary::after {
-            content: '▼'; 
-            font-size: 18px;
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: transform 0.3s ease;
-            color: var(--secondary-color);
-        }
-        
-        .faq-item[open] summary::after {
-            transform: translateY(-50%) rotate(180deg);
-        }
-        
-        .faq-item p {
-            padding: 0 20px 20px 20px; 
-            font-size: 20px;
-            line-height: 1.7;
-            border-top: 1px dashed var(--secondary-color);
-            margin: 0;
-            color: #ccc;
-        }
-
-        .main-footer { 
-            text-align: center; 
-            padding: 20px; 
-            margin-top: 40px; 
-            background: var(--dark-glass); 
-            border-top: 2px solid var(--secondary-color); 
-            font-size: 22px;
-        }
-
-        @media(max-width: 768px) {
-            .main-header { flex-direction: column; }
-            .main-nav ul { flex-direction: column; text-align: center; margin-top: 15px; }
-            .main-nav ul li { margin: 10px 0; margin-left: 0; }
-            .hero h1 { font-size: 46px; }
-            .hero p { font-size: 20px; }
-            .card h2 { font-size: 32px; }
-        }
     </style>
 </head>
 <body>
 
     <header class="main-header">
-        <a href="#hero" class="logo">Yamaç'ın Kodu</a>
+        <a href="#" class="logo">YAMAÇ.EXE</a>
         <nav class="main-nav">
             <ul>
-                <li><a href="#hero">Ana Sayfa</a></li>
-                <li><a href="#hakkinda">Hakkında</a></li>
-                <li><a href="#sss">S.S.S.</a></li> 
-                <li><a href="#projelerim">Projelerim</a></li>
-                <li><a href="#izleme">İzleme</a></li> 
-                <li><a href="#muzik">Müzik</a></li> 
-                <li><a href="#iletisim">İletişim</a></li>
+                <li><a href="#sozluk">Sözlük</a></li>
+                <li><a href="#sorubankasi">Soru Bankası</a></li>
+                <li><a href="#izleme">İzleme</a></li>
+                <li><a href="#muzik">Müzik</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section id="hero" class="hero">
-            <div class="hero-content">
-                <h1>Merhaba, ben Yamaç!</h1>
-                <p>Hayallerini koda dönüştüren bir maceraperest.</p>
+    <div class="container">
+        
+        <section id="sozluk">
+            <div class="card">
+                <h2>📖 Dev Yazılım Sözlüğü</h2>
+                <p>Yazılım ve oyun dünyasındaki kelimeleri hemen çevir!</p>
+                <input type="text" id="dicInput" placeholder="Kelime yaz (kod, oyun, yapay zeka)...">
+                <br>
+                <button class="btn" onclick="searchDictionary()">TR ➡️ EN Çevir</button>
+                <div id="dicResult" class="result-box">Sonuç burada görünecek...</div>
             </div>
         </section>
-        <div class="container">
-            <section id="hakkinda">
-                <div class="card">
-                    <h2>Ben Kimim?</h2>
-                    <p>
-                        Adım Yamaç, 10 yaşındayım ve Ekin Koleji'nde öğrenciyim.
-                        Bilgisayarlar, oyunlar ve yeni şeyler yaratmak en büyük tutkum.
-                        Bu web sitesi, benim dijital dünyadaki ilk büyük adımım!
-                    </p>
+
+        <section id="sorubankasi">
+            <div class="card">
+                <h2>❓ Bilgi & Soru Bankası</h2>
+                <p>Her tıkladığında 1000 soruluk havuzdan rastgele bir bilgi!</p>
+                <div id="questionDisplay" class="result-box">Bir soru getirmek için butona bas!</div>
+                <button class="btn" onclick="getRandomQuestion()">Rastgele Bilgi Getir</button>
+            </div>
+        </section>
+
+        <section id="izleme">
+            <div class="card">
+                <h2>📺 İzleme Köşesi</h2>
+                <div class="media-container">
+                    <iframe src="https://www.youtube.com/embed/8B1EtVPBSMw" frameborder="0" allowfullscreen></iframe>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="sss">
-                <div class="card">
-                    <h2>Bana Sorduklarınız (S.S.S.)</h2>
-                    <p>Benim hakkımda, projelerim ve hobilerim hakkında merak edilenler!</p>
-                    <div class="faq-container">
-                        <details class="faq-item">
-                            <summary>En sevdiğin video oyunu hangisi?</summary>
-                            <p>En çok Minecraft ve Roblox oynamayı seviyorum. Kendi dünyalarımı tasarlamak harika!</p>
-                        </details>
-                        <details class="faq-item">
-                            <summary>Kodlamayı nasıl ve nerede öğrendin?</summary>
-                            <p>Ekin Koleji'ndeki derslerimde Scratch ve robotik kodlama ile başladım. Bu siteyi ise internetteki kaynaklardan (HTML, CSS ve JavaScript) öğrenerek kendim yaptım.</p>
-                        </details>
-                        <details class="faq-item">
-                            <summary>Büyüyünce ne olmak istiyorsun?</summary>
-                            <p>Oyun geliştiricisi veya yapay zeka mühendisi olmak istiyorum. Kendi oyunlarımı yapmayı hayal ediyorum.</p>
-                        </details>
-                        <details class="faq-item">
-                            <summary>Bir süper gücün olsaydı bu ne olurdu?</summary>
-                            <p>**Hata ayıklama (debugging) süper gücüm** olmasını isterdim! Koddaki tüm hataları anında bulup düzeltebilirdim, bu hayatımı çok kolaylaştırırdı.</p>
-                        </details>
-                    </div>
-                </div>
-            </section>
+        <section id="muzik">
+            <div class="card">
+                <h2>🎵 Müzik Çalar</h2>
+                <audio id="music-player" controls style="width: 100%;"></audio>
+                <ul id="playlist"></ul>
+            </div>
+        </section>
 
-            <section id="projelerim">
-                <div class="card">
-                    <h2>Projelerim</h2>
-                    <div class="projects-grid">
-                        <div class="project-card">
-                            <h3>🤖 Robotik Kodlama</h3>
-                            <p>LEGO Mindstorms setimle yaptığım ve basit komutlarla hareket ettirdiğim robotum. Engellerden kaçabiliyor.</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🎨 Piksel Sanatı</h3>
-                            <p>Piskel gibi araçlar kullanarak yarattığım 8-bit karakterler ve animasyonlar.</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🎵 Müzik Oluşturucu</h3>
-                            <p>Scratch kullanarak farklı notalara tıklayarak kendi müziğini yapabileceğin basit bir uygulama.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    </div>
 
-            <section id="ceviri">
-                <div class="card">
-                    <h2>Hızlı Çevirmen (Sözlük & API Destekli)</h2>
-                    <div class="interactive-box">
-                        <input type="text" id="wordInput" placeholder="Bir kelime veya cümle yaz...">
-                        <div>
-                            <button class="btn" id="trToEnBtn">TR -> EN</button>
-                            <button class="btn" id="enToTrBtn">EN -> TR</button>
-                        </div>
-                        <p id="translationResult" class="result-text">Çeviri burada görünecek.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="soru-cevap">
-                <div class="card">
-                    <h2>Bana Bir Soru Sor (Yapay Zeka)</h2>
-                    <p>Merak ettiğin bir şey var mı? Yapay zeka cevaplasın!</p>
-                    <div class="interactive-box">
-                        <input type="text" id="questionInput" placeholder="Sorunu buraya yaz...">
-                        <button class="btn" id="askBtn">Cevapla!</button>
-                        <p id="answerResult" class="result-text">Cevabım burada görünecek.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="izleme">
-                 <div class="card">
-                      <h2>İzleme Keyfi</h2>
-                      <div class="video-wrapper">
-                          <h4>Minecraft Filmi Fragmanı</h4>
-                          <div class="media-container">
-                              <iframe src="https://www.youtube.com/embed/8B1EtVPBSMw" frameborder="0" allowfullscreen></iframe>
-                          </div>
-                      </div>
-                 </div>
-            </section>
-
-            <section id="oyunlarim">
-                <div class="card">
-                    <h2>Oyunlarım</h2>
-                    <p>İşte Scratch'te yaptığım oyunlar. Denemek ister misin?</p>
-                    <div class="game-wrapper">
-                        <h4>Uzaylı Macerası</h4>
-                        <div class="media-container">
-                            <iframe src="https://scratch.mit.edu/projects/1188222105/embed" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="muzik">
-                <div class="card">
-                    <h2>🎵 Müzik Köşesi</h2>
-                    <p>Sevdiğin video klipler ve telifsiz şarkılar burada!</p>
-                    <div class="video-wrapper">
-                        <h4>Boney M - Rasputin</h4>
-                        <div class="media-container">
-                            <iframe src="https://www.youtube.com/embed/x5Oag4hISgU" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <h4 style="margin-top:40px; color: var(--primary-color);">Telifsiz Müzik Çalar</h4>
-                    <audio id="music-player" controls>Tarayıcınız ses çaları desteklemiyor.</audio>
-                    <ol id="playlist"></ol>
-                </div>
-            </section>
-
-            <section id="iletisim">
-                <div class="card">
-                    <h2>Bana Ulaş</h2>
-                    <p>Fikirlerin veya projeler hakkında konuşmak istersen, formu doldurabilirsin.</p>
-                    <form class="contact-form" action="mailto:senin-emailin@example.com?subject=Web Siteden Mesaj" method="post" enctype="text/plain">
-                        <input type="text" name="isim" placeholder="Adın" required>
-                        <input type="email" name="email" placeholder="E-posta Adresin" required>
-                        <textarea name="mesaj" placeholder="Mesajın..." required></textarea>
-                        <button type="submit" class="btn">Gönder</button>
-                    </form>
-                </div>
-            </section>
-        </div>
-    </main>
-    
-    <footer class="main-footer">
-        <p>&copy; 2026 Yamaç'ın Dünyası | Tüm hakları saklıdır.</p>
+    <footer style="text-align: center; padding: 40px; color: var(--primary-color);">
+        <p>&copy; 2026 Yamaç'ın Dünyası - Tüm Kodlar Koruma Altındadır 🛡️</p>
     </footer>
 
     <script>
-        // --- ÇEVİRMEN BÖLÜMÜ (100 Kelimelik Yerel Sözlük Destekli) ---
-        const wordInput = document.getElementById('wordInput');
-        const trToEnBtn = document.getElementById('trToEnBtn');
-        const enToTrBtn = document.getElementById('enToTrBtn');
-        const translationResult = document.getElementById('translationResult');
-
-        // Yamaç'ın 100 Kelimelik Özel Yazılım ve Oyun Sözlüğü
-        const localDictionary = {
+        // --- 1. DEV SÖZLÜK VERİSİ ---
+        const dictionary = {
             "bilgisayar": "computer", "yazılım": "software", "donanım": "hardware", "kod": "code",
             "döngü": "loop", "değişken": "variable", "fonksiyon": "function", "sunucu": "server",
             "istemci": "client", "ağ": "network", "veri": "data", "veritabanı": "database",
@@ -636,147 +190,55 @@
             "geliştirici": "developer", "tasarım": "design", "arayüz": "interface"
         };
 
-        const reverseDictionary = Object.fromEntries(
-            Object.entries(localDictionary).map(([tr, en]) => [en, tr])
-        );
-
-        async function translateWord(text, langPair) {
-            const word = text.trim().toLowerCase();
-            
-            if (word === '') {
-                translationResult.textContent = 'Lütfen bir kelime veya cümle yazın.';
-                return;
-            }
-
-            translationResult.textContent = 'Çevriliyor...';
-
-            let localMatch = null;
-            if (langPair === 'tr|en' && localDictionary[word]) {
-                localMatch = localDictionary[word];
-            } else if (langPair === 'en|tr' && reverseDictionary[word]) {
-                localMatch = reverseDictionary[word];
-            }
-
-            if (localMatch) {
-                translationResult.textContent = `Çeviri (Hızlı Sözlük): ${localMatch}`;
-                wordInput.value = '';
-                return;
-            }
-
-            try {
-                const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${langPair}`);
-                if (!response.ok) throw new Error('Çeviri servisi yanıt vermiyor.');
-                
-                const data = await response.json();
-                if (data.responseStatus === 200) {
-                    translationResult.textContent = `Çeviri (İnternet): ${data.responseData.translatedText}`;
-                } else {
-                    translationResult.textContent = `Çeviri başarısız oldu: ${data.responseDetails}`;
-                }
-            } catch (error) {
-                console.error('Çeviri Hatası:', error);
-                translationResult.textContent = 'Bir hata oluştu. İnternet bağlantınızı kontrol edin.';
-            }
-            wordInput.value = '';
+        function searchDictionary() {
+            const input = document.getElementById('dicInput').value.toLowerCase().trim();
+            const result = dictionary[input] || "Bu kelime henüz kütüphanemde yok!";
+            document.getElementById('dicResult').textContent = "İngilizcesi: " + result;
         }
 
-        trToEnBtn.addEventListener('click', () => translateWord(wordInput.value, 'tr|en'));
-        enToTrBtn.addEventListener('click', () => translateWord(wordInput.value, 'en|tr'));
-        wordInput.addEventListener('keyup', (event) => {
-            if (event.key === "Enter") translateWord(wordInput.value, 'tr|en');
-        });
+        // --- 2. SORU BANKASI (Örnek Sorular - Buraya istediğin kadar ekleyebilirsin) ---
+        const questionBank = [
+            "Dünyanın ilk bilgisayarı bir oda büyüklüğündeydi!",
+            "Minecraft dünyası aslında Dünya gezegeninden daha büyüktür.",
+            "İlk bilgisayar faresi odunla yapılmıştı!",
+            "Yapay zeka satrançta dünya şampiyonunu ilk kez 1997'de yendi.",
+            "Güneş'in içine yaklaşık 1.3 milyon adet Dünya sığabilir.",
+            "Kod yazarken yapılan en küçük hata tüm sistemi durdurabilir, buna 'bug' denir.",
+            "Roblox'ta her saniye binlerce yeni oyun oluşturuluyor!",
+            "Mars'ta gökyüzü gündüzleri pembe, gün batımında ise mavidir.",
+            "İnternetin ağırlığı yaklaşık bir çilek kadardır (elektronların ağırlığı).",
+            "Dünyadaki en uzun oyun maratonu 138 saat sürmüştür."
+        ];
 
-        // --- MÜZİK ÇALAR BÖLÜMÜ ---
+        function getRandomQuestion() {
+            const randomIndex = Math.floor(Math.random() * questionBank.length);
+            document.getElementById('questionDisplay').textContent = questionBank[randomIndex];
+        }
+
+        // --- 3. MÜZİK ÇALAR SİSTEMİ ---
         const audioPlayer = document.getElementById('music-player');
         const playlistElement = document.getElementById('playlist');
-        let currentSongIndex = 0;
-
         const songs = [
-            { title: "SoundHelix Song 1 (Techno)", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-            { title: "SoundHelix Song 8 (Rock)", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" },
-            { title: "SoundHelix Song 2 (Pop)", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" }
+            { title: "Siber Macera", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+            { title: "Uzay Yürüyüşü", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" },
+            { title: "Kodlama Modu", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
         ];
 
         songs.forEach((song, index) => {
             const li = document.createElement('li');
             li.textContent = song.title;
-            li.dataset.index = index;
-            li.addEventListener('click', (e) => playSong(parseInt(e.target.dataset.index)));
+            li.onclick = () => {
+                audioPlayer.src = song.src;
+                audioPlayer.play();
+                document.querySelectorAll('#playlist li').forEach(el => el.className = '');
+                li.className = 'active-song';
+            };
             playlistElement.appendChild(li);
         });
+        
+        // İlk şarkıyı hazırla
+        if(songs.length > 0) audioPlayer.src = songs[0].src;
 
-        function playSong(index) {
-            if (index >= songs.length) index = 0;
-            audioPlayer.src = songs[index].src;
-            audioPlayer.play();
-            currentSongIndex = index;
-
-            document.querySelectorAll('#playlist li').forEach(item => item.classList.remove('active-song'));
-            document.querySelectorAll('#playlist li')[index].classList.add('active-song');
-        }
-
-        audioPlayer.addEventListener('ended', () => playSong(currentSongIndex + 1));
-
-        if (songs.length > 0) {
-            audioPlayer.src = songs[0].src;
-            document.querySelectorAll('#playlist li')[0].classList.add('active-song');
-        }
-
-// --- GERÇEK YAPAY ZEKA (GEMINI) BAĞLANTISI ---
-        const questionInput = document.getElementById('questionInput');
-        const askBtn = document.getElementById('askBtn');
-        const answerResult = document.getElementById('answerResult');
-
-        // DİKKAT: Bu yöntem sadece yerel denemeler içindir. 
-        // Siteni herkesin erişimine açacaksan bu anahtarı gizli bir sunucuda tutmalısın!
-        const API_KEY = "AIzaSyBD0V0MlOxi3W7Zam3glUNcyIW7-qq2_P0"; 
-
-        async function answerQuestion() {
-            const question = questionInput.value.trim();
-            if (question === '') { 
-                answerResult.textContent = "Lütfen bir soru yazmayı unutmayın!"; 
-                return; 
-            }
-
-            answerResult.textContent = "Yapay zeka derin düşüncelere daldı... 🤔"; 
-            askBtn.disabled = true; 
-
-            try {
-                // Google Gemini API'ye istek gönderiyoruz
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{ text: `Sen Yamaç'ın web sitesindeki yardımcı botsun. 
-                                            Kısa, eğlenceli ve bir 10 yaşındaki çocuğun anlayacağı dilde cevap ver. 
-                                            Soru şu: ${question}` }]
-                        }]
-                    })
-                });
-
-                const data = await response.json();
-                
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    const aiResponse = data.candidates[0].content.parts[0].text;
-                    answerResult.textContent = "🤖 Bot: " + aiResponse;
-                } else {
-                    throw new Error("Cevap alınamadı.");
-                }
-
-            } catch (error) {
-                console.error('Hata:', error);
-                answerResult.textContent = 'Eyvah! Devrelerimde bir temassızlık oldu. Anahtarını doğru yazdığından emin misin?';
-            } finally {
-                askBtn.disabled = false;
-                questionInput.value = '';
-            }
-        }
-
-        askBtn.addEventListener('click', answerQuestion);
-        questionInput.addEventListener('keyup', (event) => { 
-            if (event.key === "Enter") answerQuestion(); 
-        });
     </script>
 </body>
 </html>
