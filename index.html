@@ -722,10 +722,14 @@
             document.querySelectorAll('#playlist li')[0].classList.add('active-song');
         }
 
-        // --- SORU-CEVAP BÖLÜMÜ ---
+// --- GERÇEK YAPAY ZEKA (GEMINI) BAĞLANTISI ---
         const questionInput = document.getElementById('questionInput');
         const askBtn = document.getElementById('askBtn');
         const answerResult = document.getElementById('answerResult');
+
+        // DİKKAT: Bu yöntem sadece yerel denemeler içindir. 
+        // Siteni herkesin erişimine açacaksan bu anahtarı gizli bir sunucuda tutmalısın!
+        const API_KEY = "AIzaSyBD0V0MlOxi3W7Zam3glUNcyIW7-qq2_P0"; 
 
         async function answerQuestion() {
             const question = questionInput.value.trim();
@@ -734,28 +738,37 @@
                 return; 
             }
 
-            answerResult.textContent = "Yapay zeka düşünüyor..."; 
+            answerResult.textContent = "Yapay zeka derin düşüncelere daldı... 🤔"; 
             askBtn.disabled = true; 
-            questionInput.disabled = true;
 
             try {
-                const response = await fetch('/api/ask', {
-                    method: 'POST', 
+                // Google Gemini API'ye istek gönderiyoruz
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+                    method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ soru: question }), 
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: `Sen Yamaç'ın web sitesindeki yardımcı botsun. 
+                                            Kısa, eğlenceli ve bir 10 yaşındaki çocuğun anlayacağı dilde cevap ver. 
+                                            Soru şu: ${question}` }]
+                        }]
+                    })
                 });
 
-                if (!response.ok) throw new Error('Sunucudan bir hata geldi.');
-
-                const data = await response.json(); 
-                answerResult.textContent = data.answer ? data.answer : `Bir hata oluştu: ${data.error}`;
+                const data = await response.json();
+                
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    const aiResponse = data.candidates[0].content.parts[0].text;
+                    answerResult.textContent = "🤖 Bot: " + aiResponse;
+                } else {
+                    throw new Error("Cevap alınamadı.");
+                }
 
             } catch (error) {
                 console.error('Hata:', error);
-                answerResult.textContent = 'Yapay zekaya ulaşılamadı. Lütfen tekrar deneyin.';
+                answerResult.textContent = 'Eyvah! Devrelerimde bir temassızlık oldu. Anahtarını doğru yazdığından emin misin?';
             } finally {
                 askBtn.disabled = false;
-                questionInput.disabled = false;
                 questionInput.value = '';
             }
         }
