@@ -67,9 +67,11 @@
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 0 20px rgba(0,255,157,0.2);
+            margin-bottom: 20px;
         }
 
         h2 { color: var(--primary-color); font-size: 40px; margin-bottom: 20px; }
+        h4 { color: var(--secondary-color); font-size: 28px; margin-top: 20px; }
 
         .btn {
             padding: 12px 25px; background: var(--primary-color); color: #000;
@@ -90,8 +92,8 @@
             min-height: 60px; font-size: 24px; color: #fff; background: rgba(0,0,0,0.3);
         }
 
-        .media-container { position: relative; padding-bottom: 56.25%; height: 0; margin-top: 20px; }
-        .media-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px; }
+        .media-container { position: relative; padding-bottom: 56.25%; height: 0; margin: 20px 0; }
+        .media-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid var(--primary-color); border-radius: 10px; }
 
         #playlist { list-style: none; text-align: left; margin-top: 15px; max-height: 200px; overflow-y: auto; }
         #playlist li { padding: 10px; cursor: pointer; border-bottom: 1px solid #444; }
@@ -103,12 +105,12 @@
 <body>
 
     <header class="main-header">
-        <a href="#" class="logo">YAMAÇ.EXE</a>
+        <a href="#" class="logo">YAMAÇ'IN DÜNYASI</a>
         <nav class="main-nav">
             <ul>
                 <li><a href="#sozluk">Sözlük</a></li>
                 <li><a href="#sorubankasi">Soru Bankası</a></li>
-                <li><a href="#izleme">İzleme</a></li>
+                <li><a href="#oyunlar">Oyunlarım</a></li>
                 <li><a href="#muzik">Müzik</a></li>
             </ul>
         </nav>
@@ -118,36 +120,41 @@
         
         <section id="sozluk">
             <div class="card">
-                <h2>📖 Dev Yazılım Sözlüğü</h2>
-                <p>Yazılım ve oyun dünyasındaki kelimeleri hemen çevir!</p>
-                <input type="text" id="dicInput" placeholder="Kelime yaz (kod, oyun, yapay zeka)...">
+                <h2>📖 Bilgi Sözlüğü</h2>
+                <input type="text" id="dicInput" placeholder="Kelime yaz (örn: kod, veri, siber)...">
                 <br>
-                <button class="btn" onclick="searchDictionary()">TR ➡️ EN Çevir</button>
+                <button class="btn" onclick="searchDictionary()">Çevir</button>
                 <div id="dicResult" class="result-box">Sonuç burada görünecek...</div>
             </div>
         </section>
 
         <section id="sorubankasi">
             <div class="card">
-                <h2>❓ Bilgi & Soru Bankası</h2>
-                <p>Her tıkladığında 1000 soruluk havuzdan rastgele bir bilgi!</p>
-                <div id="questionDisplay" class="result-box">Bir soru getirmek için butona bas!</div>
-                <button class="btn" onclick="getRandomQuestion()">Rastgele Bilgi Getir</button>
+                <h2>❓ Bilgi Havuzu (1000 Soru)</h2>
+                <div id="questionDisplay" class="result-box">Yeni bir bilgi öğrenmek için butona bas!</div>
+                <button class="btn" onclick="getRandomQuestion()">Rastgele Getir</button>
             </div>
         </section>
 
-        <section id="izleme">
+        <section id="oyunlar">
             <div class="card">
-                <h2>📺 İzleme Köşesi</h2>
+                <h2>🎮 Oyun Portalım</h2>
+                
+                <h4>Yeni Macera 1</h4>
                 <div class="media-container">
-                    <iframe src="https://www.youtube.com/embed/8B1EtVPBSMw" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://scratch.mit.edu/projects/1102309342/embed" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                </div>
+
+                <h4>Yeni Macera 2</h4>
+                <div class="media-container">
+                    <iframe src="https://scratch.mit.edu/projects/617904287/embed" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
         <section id="muzik">
             <div class="card">
-                <h2>🎵 Müzik Çalar</h2>
+                <h2>🎵 Müzik Arşivi</h2>
                 <audio id="music-player" controls style="width: 100%;"></audio>
                 <ul id="playlist"></ul>
             </div>
@@ -155,59 +162,37 @@
 
     </div>
 
-    <footer style="text-align: center; padding: 40px; color: var(--primary-color);">
-        <p>&copy; 2026 Yamaç'ın Dünyası - Tüm Kodlar Koruma Altındadır 🛡️</p>
+    <footer style="text-align: center; padding: 40px; color: var(--primary-color); background: var(--dark-glass);">
+        <p>&copy; 2026 Yamaç'ın Dünyası | Ekin Koleji Projesi</p>
     </footer>
 
     <script>
-        // --- 1. DEV SÖZLÜK VERİSİ ---
+        // --- SÖZLÜK ---
         const dictionary = {
-            "bilgisayar": "computer", "yazılım": "software", "donanım": "hardware", "kod": "code",
-            "döngü": "loop", "değişken": "variable", "fonksiyon": "function", "sunucu": "server",
-            "istemci": "client", "ağ": "network", "veri": "data", "veritabanı": "database",
-            "hata": "bug", "hata ayıklama": "debugging", "algoritma": "algorithm", "dizi": "array",
-            "sınıf": "class", "nesne": "object", "dosya": "file", "klasör": "folder",
-            "ekran": "screen", "klavye": "keyboard", "fare": "mouse", "internet": "internet",
-            "tarayıcı": "browser", "sayfa": "page", "bağlantı": "link", "kullanıcı": "user",
-            "şifre": "password", "güvenlik": "security", "oyun": "game", "oyuncu": "player",
-            "seviye": "level", "puan": "score", "düşman": "enemy", "karakter": "character",
-            "can": "health", "silah": "weapon", "zırh": "armor", "hız": "speed",
-            "zaman": "time", "başlat": "start", "durdur": "stop", "duraklat": "pause",
-            "çıkış": "exit", "giriş": "login", "kayıt": "register", "ayar": "setting",
-            "ses": "sound", "müzik": "music", "görüntü": "image", "video": "video",
-            "piksel": "pixel", "çözünürlük": "resolution", "yapay zeka": "artificial intelligence",
-            "makine öğrenimi": "machine learning", "robot": "robot", "siber": "cyber",
-            "korsan": "hacker", "virüs": "virus", "koruma": "protection", "duvar": "wall",
-            "ateş duvarı": "firewall", "bulut": "cloud", "depolama": "storage", "hafıza": "memory",
-            "işlemci": "processor", "anakart": "motherboard", "ekran kartı": "graphics card",
-            "indirme": "download", "yükleme": "upload", "sunum": "presentation", "proje": "project",
-            "görev": "task", "hedef": "goal", "başarı": "achievement", "kupa": "trophy",
-            "harita": "map", "dünya": "world", "uzay": "space", "gemi": "ship",
-            "araba": "car", "yarış": "race", "dövüş": "fight", "atlama": "jump",
-            "koşma": "run", "yürüme": "walk", "uçma": "fly", "yüzme": "swim",
-            "renk": "color", "kırmızı": "red", "mavi": "blue", "yeşil": "green",
-            "siyah": "black", "beyaz": "white", "sarı": "yellow", "mor": "purple",
-            "geliştirici": "developer", "tasarım": "design", "arayüz": "interface"
+            "kod": "code", "oyun": "game", "yazılım": "software", "uzay": "space",
+            "bilgisayar": "computer", "hata": "bug", "robot": "robot", "yıldız": "star",
+            "yapay zeka": "artificial intelligence", "siber": "cyber", "veri": "data"
         };
 
         function searchDictionary() {
             const input = document.getElementById('dicInput').value.toLowerCase().trim();
-            const result = dictionary[input] || "Bu kelime henüz kütüphanemde yok!";
-            document.getElementById('dicResult').textContent = "İngilizcesi: " + result;
+            const result = dictionary[input] || "Bu kelime henüz sözlükte yok.";
+            document.getElementById('dicResult').textContent = "Sonuç: " + result;
         }
 
-        // --- 2. SORU BANKASI (Örnek Sorular - Buraya istediğin kadar ekleyebilirsin) ---
+        // --- 1000 SORU BANKASI ---
+        // Buradaki tırnak içine 1000 tane ekleme yapabilirsin!
         const questionBank = [
-            "Dünyanın ilk bilgisayarı bir oda büyüklüğündeydi!",
-            "Minecraft dünyası aslında Dünya gezegeninden daha büyüktür.",
-            "İlk bilgisayar faresi odunla yapılmıştı!",
-            "Yapay zeka satrançta dünya şampiyonunu ilk kez 1997'de yendi.",
-            "Güneş'in içine yaklaşık 1.3 milyon adet Dünya sığabilir.",
-            "Kod yazarken yapılan en küçük hata tüm sistemi durdurabilir, buna 'bug' denir.",
-            "Roblox'ta her saniye binlerce yeni oyun oluşturuluyor!",
-            "Mars'ta gökyüzü gündüzleri pembe, gün batımında ise mavidir.",
-            "İnternetin ağırlığı yaklaşık bir çilek kadardır (elektronların ağırlığı).",
-            "Dünyadaki en uzun oyun maratonu 138 saat sürmüştür."
+            "İlk video oyunu olan Pong, 1972 yılında çıktı.",
+            "Dünyadaki tüm verilerin %90'ı son 2 yılda üretildi.",
+            "Minecraft'taki bir blok gerçek dünyada 1 metreye eşittir.",
+            "İnternetin ilk adı ARPANET idi.",
+            "Işık saniyede 300.000 kilometre yol alır.",
+            "Dünyanın en derin noktası Mariana Çukuru'dur.",
+            "Mars'ta yerçekimi Dünya'nın yaklaşık %38'i kadardır.",
+            "Python dili adını bir yılan türünden değil, bir komedi grubundan alır.",
+            "En uzun süren Roblox oyunu yıllardır aralıksız çalışmaktadır.",
+            "Satrançta ilk birkaç hamle için trilyonlarca olasılık vardır."
         ];
 
         function getRandomQuestion() {
@@ -215,13 +200,12 @@
             document.getElementById('questionDisplay').textContent = questionBank[randomIndex];
         }
 
-        // --- 3. MÜZİK ÇALAR SİSTEMİ ---
+        // --- MÜZİK SİSTEMİ ---
         const audioPlayer = document.getElementById('music-player');
         const playlistElement = document.getElementById('playlist');
         const songs = [
-            { title: "Siber Macera", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-            { title: "Uzay Yürüyüşü", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" },
-            { title: "Kodlama Modu", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
+            { title: "Siber Ritim", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+            { title: "Kodlama Dalgası", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" }
         ];
 
         songs.forEach((song, index) => {
@@ -236,9 +220,7 @@
             playlistElement.appendChild(li);
         });
         
-        // İlk şarkıyı hazırla
         if(songs.length > 0) audioPlayer.src = songs[0].src;
-
     </script>
 </body>
 </html>
